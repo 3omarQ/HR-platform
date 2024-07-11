@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import UserModel, { User } from "./User";
+import UserSchema, { User } from "./User";
 
 interface Employee extends User {
     jobTitle : string ,
@@ -22,7 +22,7 @@ const EmployeeSchema = new mongoose.Schema<Employee>({
     }
 })
 
-EmployeeSchema.add(UserModel.schema)
+EmployeeSchema.add(UserSchema)
 
 
 const EmployeeModel = mongoose.model("Employee", EmployeeSchema);
