@@ -1,8 +1,14 @@
-const express = require('express')
-const app = express();
-const port = 4000;
+import express, { Request, Response } from 'express';
 
-app.get('/', (req: any, res: any) => {
+const app = express();
+const port = 8000;
+const connectToDataBase = require("./connectToDataBase/ConnectToDataBase");
+
+
+//----------------------connect with dataBase-------------------------------------------//
+connectToDataBase();
+ 
+app.get('/', (req: Request, res: Response) => {
     return res.send('Hello World!');
   });
   
