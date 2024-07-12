@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import userSchema from "./User";
+import userSchema from "./user";
 
 
 const AdminSchema = new mongoose.Schema()

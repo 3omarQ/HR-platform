@@ -13,8 +13,8 @@ connectWithDataBase();
  
 
 
-const SignIn = require('./routes/SignIn')
-const SignUp = require('./routes/SignUp')
+const SignIn = require('./routes/sign-in')
+const SignUp = require('./routes/sign-up')
 
 
 app.use('/signUp',SignUp)

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import UserSchema, { User } from "./User";
+import UserSchema, { User } from "./user";
 
 interface Employee extends User {
     jobTitle : string ,

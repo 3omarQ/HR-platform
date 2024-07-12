@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
-import AdminModel from '../models/Admin';
-import EmployeeModel from '../models/Employee';
+import AdminModel from '../models/admin';
+import EmployeeModel from '../models/employee';
 
 const router = express.Router();
 const bcrypt = require("bcrypt");
@@ -28,6 +28,8 @@ router.post("/",async(req:Request,res :Response)=>{
         }
     }catch(error:unknown){
         res.status(500).json({message : " error came from server please try again "})
+        console.log('error from sign up  :' , error)
+
     }
 })
 

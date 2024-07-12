@@ -30,7 +30,6 @@ const UserSchema = new mongoose.Schema<User>({
   phone: {
     type: Number,
     required: true,
-    unique: true,
   },
   password: {
     type: String,

@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
-import AdminModel from '../models/Admin';
-import EmployeeModel from '../models/Employee';
+import AdminModel from '../models/admin';
+import EmployeeModel from '../models/employee';
 
 const router = express.Router();
 const bcrypt = require("bcrypt");
@@ -17,7 +17,6 @@ router.post('/', async (req: Request, res: Response) => {
             password,
             role
         } = req.body
-        const empoyee = await EmployeeModel.findOne({ phone });
         if (role === "admin") {
             const admin = await AdminModel.findOne({ email });
             if (admin) {
