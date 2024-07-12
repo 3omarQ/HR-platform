@@ -16,7 +16,7 @@ router.post("/",async(req:Request,res :Response)=>{
         }else if(admin &&  !employee){
             const validPassword = await bcrypt.compare(password,admin.password)
             !validPassword && res.status(400).json({message:'Email or Password is Wrong'})
-            const token = jwt.sign({_id:admin._id ,role:admin.role},"secret",{ expiresIn: 60 * 60 }) //expired after 1h
+            const token = jwt.sign({_id:admin._id ,role:admin.role},process.env.SECREAT_TOCKEN,{ expiresIn: 60 * 60 }) //expired after 1h
             res.setHeader("token",token)
             return res.status(200).json({message:"Welcome back"})
         }else if (!admin &&  employee){
@@ -28,7 +28,7 @@ router.post("/",async(req:Request,res :Response)=>{
         }
     }catch(error:unknown){
         res.status(500).json({message : " error came from server please try again "})
-        console.log('error from sign up  :' , error)
+        console.log('error from sign in  :' , error)
 
     }
 })

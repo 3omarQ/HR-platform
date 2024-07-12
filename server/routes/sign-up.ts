@@ -32,7 +32,7 @@ router.post('/', async (req: Request, res: Response) => {
                 role: role,
             })
             await newAdmin.save()
-            const token = jwt.sign({ _id: newAdmin._id, role: newAdmin.role }, "secret", { expiresIn: 60 * 60 }) //expired after 1h
+            const token = jwt.sign({ _id: newAdmin._id, role: newAdmin.role }, process.env.SECREAT_TOCKEN, { expiresIn: 60 * 60 }) //expired after 1h
             res.setHeader("token", token)
             res.status(200).json({ message: 'admin logged in successfully' })
         } else if (role === "employee") {
