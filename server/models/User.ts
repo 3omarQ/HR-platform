@@ -7,7 +7,7 @@ export interface User {
   phone:Number,
   password:String,
   dateOfCreation:Date,
-  isAdmin:Boolean,
+  role:string,
 }
 
 
@@ -40,8 +40,8 @@ const UserSchema = new mongoose.Schema<User>({
     type: Date,
     default: Date.now,
   },
-  isAdmin: {
-    type: Boolean,
+  role: {
+    type: String,
   },
   
 });

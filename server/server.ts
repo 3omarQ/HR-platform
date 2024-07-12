@@ -2,11 +2,11 @@ import express, { Request, Response } from 'express';
 
 const app = express();
 const port = 8000;
-const connectToDataBase = require("./connectToDataBase/ConnectToDataBase");
+const connectWithDataBase = require("./connect-with-dataBase/connect-with-dataBase");
 
 
 //----------------------connect with dataBase-------------------------------------------//
-connectToDataBase();
+connectWithDataBase();
  
 app.get('/', (req: Request, res: Response) => {
     return res.send('Hello World!');
