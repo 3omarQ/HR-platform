@@ -3,7 +3,7 @@ import { Sidebar } from "../../components/Sidebar";
 
 export const DashboardLayout = () => {
 
-  return <div className="w-screen h-screen bg-red-200 flex">
+  return <div className="w-screen h-screen flex">
     <Sidebar items={[
       { label: 'Home', path: '/' },
       { label: 'Employee', path: '/' },

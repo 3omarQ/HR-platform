@@ -1,6 +1,4 @@
-import axios from "axios";
-
-export const signIn = async (email: string, password: string) => {
+import axios from "axios";export const signIn = async (email: string, password: string) => {
 	// const response = await axios.post("/api/auth", { email, password });
 	// localStorage.setItem("token", response.data.token ?? "test");
 	// console.log(response.data);
