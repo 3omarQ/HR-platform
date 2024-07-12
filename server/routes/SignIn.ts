@@ -22,11 +22,14 @@ router.post("/",async(req:Request,res :Response)=>{
         }else if (!admin &&  employee){
             const validPassword = await bcrypt.compare(password,employee.password)
             !validPassword && res.status(400).json({message:'Email or Password is Wrong'})
-            const token = jwt.sign({_id:employee._id ,role:employee.role},"secret",{ expiresIn: 60 * 60 }) //expired after 1h
+            const token = jwt.sign({_id:employee._id ,role:employee.role},process.env.SECREAT_TOCKEN,{ expiresIn: 60 * 60 }) //expired after 1h
             res.setHeader("token",token)
             return res.status(200).json({message:"Welcome back"})
         }
     }catch(error:unknown){
-        console.log('error in signin ',error)
+        res.status(500).json({message : " error came from server please try again "})
     }
 })
+
+
+module.exports = router;

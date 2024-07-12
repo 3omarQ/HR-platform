@@ -10,11 +10,11 @@ interface Employee extends User {
 const EmployeeSchema = new mongoose.Schema<Employee>({
     jobTitle: {
         type: String,
-        required: true,
+        required: false,
       },
     contactInfo :{
         type :String ,
-        required :true
+        required :false
     },
     document : {
         type: mongoose.Schema.Types.ObjectId,
