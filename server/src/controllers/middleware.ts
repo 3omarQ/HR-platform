@@ -4,6 +4,7 @@ import jwt from "../utils/jwt";
 export const auth =
   (roles: string[] = []) =>
   (req: Request, res: Response, next: NextFunction) => {
+    
     // When no authorization header is set throw error
     const authorization = req.headers.authorization;
     if (!authorization) {
