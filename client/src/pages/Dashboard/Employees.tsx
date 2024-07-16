@@ -1,3 +1,3 @@
 export const EmployeePage = () => {
-  return <>Employee page</>
-}
+  return <>Employee page</>;
+};
