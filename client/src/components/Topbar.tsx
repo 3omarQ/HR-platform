@@ -12,7 +12,7 @@ export const Topbar: FC<Prop> = ({ employeeName, menuName }) => {
 
   return (
     <div>
-      <div className=" bg-slate-100 flex justify-between items-center h-12 px-8">
+      <div className="  flex justify-between items-center h-12 px-8">
         {/* Left side */}
         <span className="text-end">{menuName}</span>
 

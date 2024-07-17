@@ -1,34 +1,40 @@
 import React from "react";
 import { Button } from "./Button";
+import { useNavigate } from "react-router-dom";
+import { EditEmployeeModal } from "./EditEmployeeModal";
 
-interface ButtonProps {
-  label: string;
-  onClick: () => void;
-  variant?: "gradient" | "outline";
-  loading?: boolean;
+interface Employee {
+  id: number;
+  name: string;
+  department: string;
+  email: string;
 }
-interface Prop {
-  itemName: string;
-  buttons: ButtonProps[];
-}
-const ListItem: React.FC<Prop> = ({ itemName, buttons }) => {
+
+const ListItem: React.FC<Employee> = ({ id, name, department, email }) => {
+  const navigate = useNavigate();
+  const employee = { id, name, department, email };
   return (
-    <div className="flex items-center justify-around space-x-2">
-      <span className="mr-2">{itemName}</span>
-      <div className="flex justify-between gap-7">
-        {buttons.map((button, index) => (
-          <Button
-            key={index}
-            onClick={button.onClick}
-            variant={button.variant}
-            loading={button.loading}
-            className="px-4"
-          >
-            {button.label}
-          </Button>
-        ))}
-      </div>
-    </div>
+    <tr className="odd:bg-gray-50">
+      <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+        {name}
+      </td>
+      <td className="whitespace-nowrap px-4 py-2 text-gray-700">{email}</td>
+      <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+        {department}
+      </td>
+      <td className="whitespace-nowrap px-4 py-2 flex ">
+        <Button
+          onClick={() => {
+            navigate("/profile");
+          }}
+          variant="outline"
+          className="px-2 mx-2"
+        >
+          Profile
+        </Button>
+        <EditEmployeeModal employee={employee}></EditEmployeeModal>
+      </td>
+    </tr>
   );
 };
 

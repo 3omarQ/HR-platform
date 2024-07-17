@@ -26,7 +26,7 @@ export const Sidebar: FC<Prop> = (props) => {
   };
 
   return (
-    <div className=" bg-slate-100 flex flex-col justify-between h-screen pb-6">
+    <div className="  flex flex-col justify-between h-screen pb-6">
       {/* Top side */}
       <div className="flex flex-col justify-between  items-center h-12">
         <img src={logo} alt="OK Studios" className="h-10 pt-1" />
