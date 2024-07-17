@@ -30,6 +30,16 @@ const createEmployee = async (dto: CreateUser) => {
   return data;
 };
 
+
+const getEmployee = async (id : string)=>{
+  const employee = await User.findById(id)
+  if(!employee){
+    throw new Error("there are no employee with this id ")
+  }
+  return employee
+}
+
 export default {
   createEmployee,
+  getEmployee
 };
