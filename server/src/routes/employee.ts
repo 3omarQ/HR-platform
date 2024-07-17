@@ -4,6 +4,6 @@ import { auth } from "../controllers/middleware";
 
 const router = express.Router();
 
-router.post("/",auth() ,employee.createEmployee);
+router.post("/",auth(['ADMIN']) ,employee.createEmployee);
 
 export default router;
