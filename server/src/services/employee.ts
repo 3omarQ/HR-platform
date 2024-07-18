@@ -1,9 +1,11 @@
 import { mailToNewEmployee } from "../mailing/mail-messages";
-import User from "../models/User";
+import EmpInformation, { IEmpInformation } from "../models/EmpInformation";
+import User, { IUser } from "../models/User";
 import { encrypt,generatePassword } from "../utils/enc";
 import { CreateUser } from "./dto/auth";
+import { EmpInfo } from "./dto/emp-information";
 
-const createEmployee = async (dto: CreateUser) => {
+const createEmployee = async (dto: CreateUser) : Promise<IUser> => {
   const employee = await User.findOne({ email:dto.email });
   if(employee){
     throw new Error("Employee already exist");
@@ -24,6 +26,12 @@ const createEmployee = async (dto: CreateUser) => {
   });
   const data = await user.save();
 
+  //create employee information in db
+  const empInfo = new EmpInformation({
+    employeeId :data.id ,
+  })
+  empInfo.save(); 
+
   // send mail to new employee 
   await mailToNewEmployee(dto)
   
@@ -31,15 +39,28 @@ const createEmployee = async (dto: CreateUser) => {
 };
 
 
-const getEmployee = async (id : string)=>{
+const getEmployee = async (id : string)  : Promise<IUser>=>{
   const employee = await User.findById(id)
   if(!employee){
-    throw new Error("there are no employee with this id ")
+    throw new Error("there are no employee with this id ");
   }
-  return employee
+  return employee;
 }
+
+
+const updateInformation = async (info:EmpInfo) : Promise<IEmpInformation>=>{
+  const oldEmpInfo = await EmpInformation.findById(info.emlpoyeeId)
+  if (!oldEmpInfo){
+    throw new Error("employee not exist")
+  }
+  const newEmpInfo = await oldEmpInfo.updateOne(info)
+  newEmpInfo.save()
+  return newEmpInfo   
+}
+
 
 export default {
   createEmployee,
+  updateInformation,
   getEmployee
 };

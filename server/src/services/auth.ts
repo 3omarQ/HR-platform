@@ -28,11 +28,6 @@ const forgetAccount = async (email: string): Promise<void> => {
     await mailToForgetAccount(email)
 };
 
-
-
-
-
-
 const resetPassword = async (
   email: string,
   password: string
