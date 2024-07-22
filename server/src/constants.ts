@@ -1,3 +1,4 @@
+export const URL = process.env.URL ?? "http://localhost:3000";
 export const PORT = process.env.PORT ?? 3000;
 
 export const JWT_SECRET = process.env.JWT_SECRET ?? "some-secret-placeholder";

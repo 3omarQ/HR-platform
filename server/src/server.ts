@@ -1,6 +1,7 @@
-import { PORT } from "./constants";
+import { URL, PORT } from "./constants";
 
 import express, { Request, Response } from "express";
+import cors from "cors";
 import morgan from "morgan";
 
 import db from "./database/database";
@@ -12,16 +13,23 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan("common"));
-const cors = require('cors');
-const corsOptions ={
-    origin:'http://localhost:3000', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
+
+app.use(
+  cors({
+    origin: URL,
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 
 app.get("/", (_: Request, res: Response) => {
   return res.send("Hello World!");
+});
+
+app.get("/health", (_: Request, res: Response) => {
+  return res.status(200).send({
+    status: "ok",
+  });
 });
 
 app.use("/auth", auth_route);
