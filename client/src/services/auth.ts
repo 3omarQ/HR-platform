@@ -1,15 +1,21 @@
-import axios from "axios";export const signIn = async (email: string, password: string) => {
-	// const response = await axios.post("/api/auth", { email, password });
-	// localStorage.setItem("token", response.data.token ?? "test");
-	// console.log(response.data);
+import axios from "axios";
+const PORT=8000
 
-	localStorage.setItem("token", "test");
-	await new Promise((res) => setTimeout(res, 1500));
+export const signIn = async (email: string, password: string) => {
+	const response =await axios.post(`http://localhost:${PORT}/auth/`, { email, password })
+    .then(response => {
+      localStorage.setItem("token", response.data.token);
+      console.log(response.data);
+    })
+	return response
 };
 
-export const reset = async (email: string) => {
-	// const response = await axios.post("/api/reset", { email });
-	// console.log(response.data);
+export const sendOTP = async (email: string,otp:string) => {
+	const response =await axios.post(`http://localhost:${PORT}/auth/forget-password`, { email,otp }).then(response=>{console.log(response.data)})
+	return response
+};
 
-	await new Promise((res) => setTimeout(res, 1500));
+export const resetPassword = async (email: string,password:string) => {
+	const response =await axios.post(`http://localhost:${PORT}/auth/reset-password`, { email,password }).then(response=>{console.log(response.data)})
+	return response
 };
