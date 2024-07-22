@@ -18,7 +18,7 @@ const signIn = asyncHandler(async (req: Request, res: Response) => {
 
 const forgetAccount = asyncHandler(async (req: Request, res: Response) => {
   try {
-    await auth_svc.forgetAccount(req.body.email);
+    await auth_svc.forgetAccount(req.body.email,req.body.otp);
     res.status(201).json({ message: "Request successfully executed" });
   } catch (error: any) {
     res.status(500).json({ error: error.message });

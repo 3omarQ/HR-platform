@@ -24,8 +24,13 @@ const signIn = async (email: string, password: string): Promise<string> => {
   return token;
 };
 
-const forgetAccount = async (email: string): Promise<void> => {
-    await mailToForgetAccount(email)
+const forgetAccount = async (email: string,otp:string): Promise<void> => {
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new Error("User with email provided doesn not exist");
+  };
+  await mailToForgetAccount(email,otp)
+  
 };
 
 const resetPassword = async (

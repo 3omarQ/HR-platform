@@ -8,6 +8,16 @@ import Submissions from "./pages/Dashboard/Submissions";
 import JobOffers from "./pages/Dashboard/JobOffers";
 import TimeOffs from "./pages/Dashboard/TimeOffs";
 import Profile from "./pages/Dashboard/Profile";
+import ChangePasswordPage from "./pages/Auth/ChangePasswordPage";
+import { createContext, useContext, useState } from "react";
+import { RecoveryProvider } from "./pages/Auth/RecoveryContext";
+
+interface RecoveryContextType {
+  email: string;
+  setEmailForContext: (email: string) => void;
+  otp: string | null;
+  setOtpForContext: (error: string | null) => void;
+}
 
 function App() {
   return (
@@ -34,11 +44,14 @@ const PrivateLayout = () => {
 
 const PublicLayout = () => {
   return (
-    <Routes>
-      <Route path="/" element={<SignInPage />} />
-      <Route path="/reset" element={<ResetPasswordPage />} />
-      <Route path="/validate" element={<CheckEmailPage />} />
-    </Routes>
+    <RecoveryProvider>
+      <Routes>
+        <Route path="/" element={<SignInPage />} />
+        <Route path="/reset" element={<ResetPasswordPage />} />
+        <Route path="/validate" element={<CheckEmailPage />} />
+        <Route path="/changepassword" element={<ChangePasswordPage />} />
+      </Routes>
+    </RecoveryProvider>
   );
 };
 
