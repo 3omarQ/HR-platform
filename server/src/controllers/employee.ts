@@ -12,11 +12,23 @@ const getEmployee = asyncMiddelware(async(req : Request ,res:Response)=> {
     res.status(200).json(user)
 })
 
-
-const updateInformation = asyncMiddelware(async (req:Request , res:Response )=>{
-      const newEmpInfo = await emp_svc.updateInformation(req.body);
-      res.status(200).json(newEmpInfo)
+const deleteEmployee = asyncMiddelware(async(req : Request ,res:Response)=> {
+    const message = await emp_svc.deleteEmployee(req.params.id)
+    res.status(200).json(message)
 })
 
 
-export default { createEmployee ,getEmployee,updateInformation};
+
+const updateInformation = asyncMiddelware(async (req:Request , res:Response )=>{
+    const message = await emp_svc.updateInformation(res.locals.user.id , req.body);
+    res.status(200).json(message)
+})
+
+
+const updateDocument = asyncMiddelware(async (req:Request , res:Response )=>{
+    const message = await emp_svc.updateDocument(res.locals.user.id , req.body);
+    res.status(200).json(message)
+})
+
+
+export default { createEmployee ,getEmployee,updateInformation ,updateDocument,deleteEmployee};

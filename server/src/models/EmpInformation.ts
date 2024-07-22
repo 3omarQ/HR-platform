@@ -13,9 +13,9 @@ export interface IEmpInformation extends Document {
 const EmpInformationSchema: Schema<IEmpInformation> = new Schema(
     {
         employeeId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-        contact: { type: String, required: true },
-        jobTitle: { type: String, required: true },
-        department: { type: String, required: true },
+        contact: { type: String,  },
+        jobTitle: { type: String,  },
+        department: { type: String,  },
         document: { type: mongoose.Schema.Types.ObjectId, ref: 'EmpDocument' },
         created_at: { type: Date, default: Date.now },
         updated_at: { type: Date, default: Date.now },

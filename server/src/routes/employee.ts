@@ -5,12 +5,12 @@ import { auth } from "../controllers/middleware";
 const router = express.Router();
 
 router.post("/",auth(['ADMIN']) ,employee.createEmployee);
-router.put("/information",auth(['EMPLOYEE']),employee.updateInformation)
-router.get('/:id',auth(['ADMIN']),employee.getEmployee )
 
+router.put("/information",auth(['EMPLOYEE']),employee.updateInformation)
+router.put("/document",auth(['EMPLOYEE']),employee.updateDocument)
+
+router.get('/:id',auth(['ADMIN']),employee.getEmployee )
+router.delete('/:id',auth(['ADMIN']),employee.deleteEmployee) 
 
 
 export default router;
-
-//ToDo : check  when we create new employee we create a emp info schema in the db 
-//ToDo : check  update information path 
