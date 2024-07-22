@@ -41,15 +41,15 @@ export const mailToNewEmployee = async (dto: CreateUser) => {
 }
 
 
-export const mailToForgetAccount = async (email: string) => {
+export const mailToForgetAccount = async (email: string,otp:string) => {
   await sendMail({
     subject: "OK STUDIOS - Password Reset Request",
     to: [email],
     text: `Dear User,
   
-          We received a request to reset your password for your OK STUDIOS account. Please click the link below to reset your password:
+          We received a request to reset your password for your OK STUDIOS account. Here's your verification code:
           
-          [Reset Password Link]
+          ${otp}
           
           If you did not request a password reset, please ignore this email. This link will expire in 24 hours.
           
@@ -60,8 +60,8 @@ export const mailToForgetAccount = async (email: string) => {
       <div style="font-family: Arial, sans-serif; line-height: 1.6;">
         <h2>OK STUDIOS - Password Reset Request</h2>
         <p>Dear User,</p>
-        <p>We received a request to reset your password for your OK STUDIOS account. Please click the button below to reset your password:</p>
-        <a href="[Reset Password Link]" style="display: inline-block; padding: 10px 20px; margin: 20px 0; font-size: 16px; color: #fff; background-color: #007bff; text-decoration: none; border-radius: 5px;">Reset Password</a>
+        <p>We received a request to reset your password for your OK STUDIOS account. Here's your verification code:</p>
+        <p>${otp}</p>
         <p>If you did not request a password reset, please ignore this email. This link will expire in 24 hours.</p>
         <p>Thank you,<br>OK STUDIOS Team</p>
       </div>`

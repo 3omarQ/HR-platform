@@ -9,8 +9,16 @@ import auth_route from "./routes/auth";
 import employee_route from "./routes/employee";
 
 const app = express();
+
 app.use(express.json());
 app.use(morgan("common"));
+const cors = require('cors');
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 
 app.get("/", (_: Request, res: Response) => {
   return res.send("Hello World!");
