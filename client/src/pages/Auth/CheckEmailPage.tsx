@@ -5,7 +5,7 @@ import { logo } from "../../assets";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useRecovery } from "./RecoveryContext";
+import { useRecovery } from "../../contexts/RecoveryContext";
 import { Alert } from "../../components/Alert";
 
 export default function CheckEmailPage() {

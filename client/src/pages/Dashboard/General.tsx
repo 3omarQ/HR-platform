@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import { Page } from "../Page";
 
-function Departments() {
+const General: FC = () => {
   return (
-    <Page title="Departments">
+    <Page title="Home">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis sunt
       voluptas repellat tenetur neque. Ducimus, quisquam odit. Id perferendis
       repellat sapiente odit! Mollitia vitae, non soluta tempora explicabo saepe
@@ -12,4 +12,4 @@ function Departments() {
   );
 }
 
-export default Departments;
+export default General;

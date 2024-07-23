@@ -10,6 +10,7 @@ interface Prop {
 export const Topbar: FC<Prop> = ({ employeeName, menuName }) => {
   const navigate = useNavigate();
 
+  return null
   return (
     <div>
       <div className="  flex justify-between items-center h-12 px-8">

@@ -2,22 +2,16 @@ import React, { createContext, useState, useContext } from "react";
 
 interface RecoveryContextType {
   recoveryEmail: string;
-  setRecoveryEmail: React.Dispatch<React.SetStateAction<string>>;
   OTP: string;
+  setRecoveryEmail: React.Dispatch<React.SetStateAction<string>>;
   setOTP: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const RecoveryContext = createContext<RecoveryContextType | undefined>(
-  undefined
+const RecoveryContext = createContext<RecoveryContextType>(
+  undefined!
 );
 
-export const useRecovery = () => {
-  const context = useContext(RecoveryContext);
-  if (!context) {
-    throw new Error("useRecovery must be used within a RecoveryProvider");
-  }
-  return context;
-};
+export const useRecovery = () => useContext(RecoveryContext)
 
 export const RecoveryProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

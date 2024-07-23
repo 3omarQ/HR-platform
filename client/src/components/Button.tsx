@@ -14,7 +14,7 @@ export const Button: FC<Prop> = ({ variant, loading, ...props }) => {
   const background = variant === "gradient" ? gradient : variant === "outline" ? outline : normal;
   const className = `${background} ${loading ? "animate-pulse" : ""}`
 
-  return <button {...props} className={`transition-all duration-500 py-1 h-8 rounded-sm font-medium uppercase border-collapse text-center ${className} ${props.className}`} type="submit" disabled={loading}>
+  return <button {...props} className={`transition-all duration-500 py-1 h-8 rounded-md font-medium uppercase border-collapse text-center ${className} ${props.className}`} type="submit" disabled={loading}>
     {
       loading
         ? <div className="flex justify-center"><FaSpinner className="animate-spin" /></div>

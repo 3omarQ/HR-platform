@@ -2,7 +2,8 @@ import { FC } from "react";
 
 interface Prop extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  onValueChange: (_: string) => void;
+  onValueChange?: (_: string) => void;
+  onCheckedChange?: (_: boolean) => void;
   icon?: any;
 }
 
@@ -10,6 +11,7 @@ export const FormField: FC<Prop> = ({
   label,
   icon,
   onValueChange,
+  onCheckedChange,
   ...props
 }) => {
   if (props.type === "checkbox") {
@@ -22,6 +24,9 @@ export const FormField: FC<Prop> = ({
           &#8203;
           <input
             {...props}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              onCheckedChange?.(e.target.checked)
+            }
             className={`size-4 rounded border-gray-300 ${props.className}`}
           />
         </div>
@@ -45,9 +50,9 @@ export const FormField: FC<Prop> = ({
           {...props}
           id={props.id ?? label}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            onValueChange(e.target.value)
+            onValueChange?.(e.target.value)
           }
-          className={`w-full rounded-sm border-gray-200 px-4 py-2 pe-12 text-sm shadow-sm border ${props.className}`}
+          className={`w-full rounded-md border-gray-200 px-4 py-2 pe-12 text-sm shadow-sm border ${props.className}`}
           placeholder={props.placeholder}
           autoComplete="off"
         />
