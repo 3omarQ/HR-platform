@@ -31,7 +31,7 @@ export const Sidebar: FC<Prop> = (props) => {
       </div>
 
       {/* Middle side */}
-      <ul className="flex flex-col gap-2 h-full mt-6 space-y-1 p-4">
+      <ul className="flex flex-col gap-2 h-full mt-6 space-y-1 p-4 overflow-auto">
         {props.items.map((el) => {
           const active = location.pathname === el.path || el.items?.some(e => e.path === location.pathname)
 

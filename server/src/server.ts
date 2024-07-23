@@ -16,7 +16,7 @@ app.use(morgan("common"));
 
 app.use(
   cors({
-    origin: URL,
+    origin: ["http://localhost:3000", URL],
     credentials: true,
     optionsSuccessStatus: 200,
   })
