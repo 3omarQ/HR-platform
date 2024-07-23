@@ -1,12 +1,12 @@
 import { Button, FormField } from "../../components";
 import { Alert } from "../../components/Alert";
-import { signIn } from "../../services/auth";
 
 import { logo } from "../../assets";
 
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import { FaAt, FaLock } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useSession } from "../../contexts/SessionContext";
 
 export default function SignInPage() {
   const navigate = useNavigate();
@@ -15,19 +15,18 @@ export default function SignInPage() {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState("");
 
+  const { signIn } = useSession()
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     setLoading(true);
-    await signIn(email, password)
-      .then(() => {
-        setLoading(false);
-        window.location.reload();
-      })
-      .catch((error) => {
-        setError(error.response?.data?.error || error.message);
-        setLoading(false);
-      });
+
+    await signIn(email, password, (err) => {
+      setLoading(false);
+      if (err) {
+        setError(err);
+      }
+    })
   };
 
   return (
@@ -65,10 +64,10 @@ export default function SignInPage() {
             <FormField
               label="Remember me"
               type="checkbox"
-              onValueChange={setPassword}
+              onCheckedChange={value => console.log(value)}
             />
             {error && (
-              <Alert title={error} description={error} type="error"></Alert>
+              <Alert title={error} description={''} type="error"></Alert>
             )}
             <Button
               className="button"

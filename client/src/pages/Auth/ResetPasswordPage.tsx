@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { FaArrowLeft, FaAt } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { sendOTP, signIn } from "../../services/auth";
-import { useRecovery } from "./RecoveryContext";
+import { useRecovery } from "../../contexts/RecoveryContext";
 
 export default function ResetPasswordPage() {
   const navigate = useNavigate();

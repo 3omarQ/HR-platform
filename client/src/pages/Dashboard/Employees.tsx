@@ -2,8 +2,8 @@ import { useState } from "react";
 import { FormField } from "../../components";
 import { Card } from "../../components/Card";
 import List from "../../components/List";
-import ListItem from "../../components/ListItem";
-import Departments from "./Departments";
+
+import { Page } from "../Page";
 
 export const EmployeePage = () => {
   const columns = ["Name", "Email", "Department"];
@@ -49,8 +49,7 @@ export const EmployeePage = () => {
   };
 
   return (
-    <div className="px-6 py-6 flex flex-col gap-5 bg-slate-100 h-full">
-      <div className="text-2xl font-bold">Manage employees</div>
+    <Page title="Manage employees">
       <div className="flex gap-4">
         <Card head="Total employees" body={employees.length.toString()}></Card>
         <Card head="Onboarding" body={employees.length.toString()}></Card>
@@ -72,6 +71,6 @@ export const EmployeePage = () => {
         </div>
         <List columns={columns} data={filteredEmployees}></List>
       </Card>
-    </div>
+    </Page>
   );
 };

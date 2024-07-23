@@ -1,22 +1,18 @@
 import { FC, ReactNode } from "react";
-import { Button } from "./Button";
-import { useNavigate } from "react-router-dom";
 
-import { logo } from "../assets";
-
-interface Prop
-  extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
-  > {
+interface Prop extends React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+> {
   head?: string;
   body?: string;
   children?: ReactNode;
 }
+
 export const Card: FC<Prop> = ({ head, body, children, ...props }) => {
   return (
     <div
-      className={`block px-5 py-4 bg-white border border-gray-200 rounded-lg shadow ${props.className}`}
+      className={`block px-5 py-4 bg-white border border-gray-200 rounded-md shadow ${props.className}`}
     >
       {head && (
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">

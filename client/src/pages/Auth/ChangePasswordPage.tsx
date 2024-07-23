@@ -4,7 +4,7 @@ import { logo } from "../../assets";
 import { FaAt, FaLock } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { Alert } from "../../components/Alert";
-import { useRecovery } from "./RecoveryContext";
+import { useRecovery } from "../../contexts/RecoveryContext";
 import { resetPassword } from "../../services/auth";
 
 function ChangePasswordPage() {
