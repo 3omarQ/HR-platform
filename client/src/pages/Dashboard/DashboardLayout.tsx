@@ -10,7 +10,7 @@ export const sidebarItems: NavItem[] = [
       { label: "Employees", path: "/employees" },
       { label: "Departments", path: "/departments" },
       { label: "Leave Requests", path: "/leave-requests" },
-    ]
+    ],
   },
   {
     label: "Hiring",
@@ -19,7 +19,7 @@ export const sidebarItems: NavItem[] = [
       { label: "Jobs", path: "/jobs" },
       { label: "Internships", path: "/internships" },
       { label: "Submissions", path: "/submissions" },
-    ]
+    ],
   },
   {
     label: "Finances",
@@ -28,21 +28,21 @@ export const sidebarItems: NavItem[] = [
       { label: "Payroll", path: "/payroll" },
       { label: "Invoices", path: "/invoices" },
       { label: "Billing", path: "/billing" },
-    ]
+    ],
   },
   {
-    label: 'Account',
+    label: "Account",
     items: [
       {
         label: "Profile",
-        path: "/profile"
+        path: "/profile",
       },
       {
         label: "Settings",
-        path: "/profile/settings"
+        path: "/profile/settings",
       },
-    ]
-  }
+    ],
+  },
 ];
 
 export const DashboardLayout = () => {

@@ -1,6 +1,11 @@
 import { SignInPage, ResetPasswordPage, CheckEmailPage } from "./pages/Auth";
 
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import { DashboardLayout } from "./pages/Dashboard/DashboardLayout";
 import { EmployeePage } from "./pages/Dashboard/Employees";
 import GeneralPage from "./pages/Dashboard/General";
@@ -13,14 +18,9 @@ import ChangePasswordPage from "./pages/Auth/ChangePasswordPage";
 import { RecoveryProvider } from "./contexts/RecoveryContext";
 import { useSession } from "./contexts/SessionContext";
 
-
 function App() {
-  const { token } = useSession()
-  return (
-    <Router>
-      {token ? <PrivateLayout /> : <PublicLayout />}
-    </Router>
-  );
+  const { token } = useSession();
+  return <Router>{token ? <PrivateLayout /> : <PublicLayout />}</Router>;
 }
 
 const PrivateLayout = () => {
