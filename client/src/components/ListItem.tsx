@@ -3,37 +3,40 @@ import { Button } from "./Button";
 import { useNavigate } from "react-router-dom";
 import { EditEmployeeModal } from "./EditEmployeeModal";
 
-interface Employee {
-  id: number;
-  name: string;
-  department: string;
-  email: string;
+type ListItemType = "withViewButton" | "withoutViewButton";
+
+interface ListItemProps<T> {
+  item: T;
+  type: ListItemType;
+  onClick: () => void;
 }
 
-const ListItem: React.FC<Employee> = ({ id, name, department, email }) => {
+const ListItem = <T extends Record<string, any>>({
+  item,
+  type,
+  onClick,
+}: ListItemProps<T>) => {
   const navigate = useNavigate();
-  const employee = { id, name, department, email };
+
   return (
     <tr className="odd:bg-gray-50">
-      <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-        {name}
-      </td>
-      <td className="whitespace-nowrap px-4 py-2 text-gray-700">{email}</td>
-      <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-        {department}
-      </td>
-      <td className="whitespace-nowrap px-4 py-2 flex ">
-        <Button
-          onClick={() => {
-            navigate("/profile");
-          }}
-          variant="outline"
-          className="px-2 mx-2"
+      {Object.entries(item).map(([key, value], index) => (
+        <td
+          key={key}
+          className={`whitespace-nowrap px-4 py-2 text-gray-700 ${
+            index === 0 ? "font-bold capitalize" : ""
+          }`}
         >
-          Profile
-        </Button>
-        <EditEmployeeModal employee={employee}></EditEmployeeModal>
-      </td>
+          {value}
+        </td>
+      ))}
+      {type === "withViewButton" && (
+        <td className="whitespace-nowrap px-4 py-2 flex">
+          <Button onClick={onClick} variant="outline" className="px-2 mx-2">
+            View
+          </Button>
+        </td>
+      )}
     </tr>
   );
 };
