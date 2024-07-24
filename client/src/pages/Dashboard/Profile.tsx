@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Page } from "../Page";
 import { Card } from "../../components";
-import { ContactInfo } from "../../components/ContactInfo";
 import List from "../../components/List";
 import { useNavigate } from "react-router-dom";
 

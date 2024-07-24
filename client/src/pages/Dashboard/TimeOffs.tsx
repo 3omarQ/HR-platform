@@ -15,7 +15,6 @@ interface LeaveRequest {
 }
 
 export const TimeOffs = () => {
-  // Define columns and data for leave requests
   const columns = [
     "ID",
     "Employee Name",
@@ -56,7 +55,6 @@ export const TimeOffs = () => {
     useState(leaveRequests);
   const navigate = useNavigate();
 
-  // Handle input changes for filtering
   const handleInputChange = (searchItem: string) => {
     setFilteredLeaveRequests(
       leaveRequests.filter((request) =>

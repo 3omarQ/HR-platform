@@ -6,7 +6,6 @@ import { Page } from "../Page";
 import { useNavigate } from "react-router-dom";
 
 export const DepartmentsPage = () => {
-  // Define columns and data for departments
   const columns = [
     "Name",
     "Head of Department",
@@ -17,20 +16,20 @@ export const DepartmentsPage = () => {
   const departments = [
     {
       name: "Web Development",
-      chef: "Omar Kassar",
-      description: "Handles all web development tasks.",
+      head: "Omar Kassar",
+      description: "description.",
       number_of_employees: 5,
     },
     {
       name: "3D Art",
-      chef: "Omar Kassar",
-      description: "Handles all web development tasks.",
+      head: "Omar Kassar",
+      description: "description.",
       number_of_employees: 5,
     },
     {
       name: "UI/UX Design",
-      chef: "Omar Kassar",
-      description: "Handles all web development tasks.",
+      head: "Omar Kassar",
+      description: "description.",
       number_of_employees: 5,
     },
   ];
@@ -38,7 +37,6 @@ export const DepartmentsPage = () => {
   const [filteredDepartments, setFilteredDepartments] = useState(departments);
   const navigate = useNavigate();
 
-  // Handle input changes for filtering
   const handleInputChange = (searchItem: string) => {
     setFilteredDepartments(
       departments.filter((department) =>
@@ -72,7 +70,7 @@ export const DepartmentsPage = () => {
           columns={columns}
           data={filteredDepartments}
           type="withViewButton"
-          onClick={() => navigate("/department-details")}
+          onClick={() => navigate("/departments/department-id")}
         ></List>
       </Card>
     </Page>
