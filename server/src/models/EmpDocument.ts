@@ -11,6 +11,12 @@ export interface IEmpDocument extends Document {
     updated_at: Date,
 }
 
+// {
+// employeeId : string ,
+// documentType : string ,
+// fileUrl : string 
+// }
+
 
 const empDocumentSchema :Schema<IEmpDocument> = new Schema ({
     empInformationId: { type: mongoose.Schema.Types.ObjectId, ref: 'EmpInformation' },
