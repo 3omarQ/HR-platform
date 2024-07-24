@@ -29,7 +29,10 @@ const forgetAccount = async (email: string,otp:string): Promise<void> => {
   if (!user) {
     throw new Error("User with email provided doesn not exist");
   };
-  await mailToForgetAccount(email,otp)
+  const token = jwt.generate({
+    user_id : user.id,
+  }) 
+  await mailToForgetAccount(email,token)
   
 };
 

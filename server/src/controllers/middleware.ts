@@ -24,6 +24,8 @@ export const auth =
       return res.status(400).json({error:"Forbidden access"})
 
     }
+    console.log('jwt.validate =====>',jwt.validate(token))
+
 
     res.locals.user = {
       id: payload.user_id,
