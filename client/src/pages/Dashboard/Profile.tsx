@@ -3,6 +3,7 @@ import { Page } from "../Page";
 import { Card } from "../../components";
 import { ContactInfo } from "../../components/ContactInfo";
 import List from "../../components/List";
+import { useNavigate } from "react-router-dom";
 
 interface Employee {
   id: string;
@@ -44,8 +45,19 @@ const contactInfoArray = Object.entries(employeeExample.contactInfo).map(
     value,
   })
 );
+const departmentsArray = employeeExample.departments.map((department) => ({
+  value: department,
+}));
+
+const leaveBalanceArray = Object.entries(employeeExample.leaveBalance).map(
+  ([type, days]) => ({
+    type,
+    days,
+  })
+);
 
 export const Profile: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <Page title="Profile">
       <div className="flex flex-wrap gap-10">
@@ -71,11 +83,27 @@ export const Profile: React.FC = () => {
             onClick={() => {}}
           ></List>
         </Card>
-        <Card head="Departments" className="w-full md:w-2/5">
-          Departments
+        <Card
+          head="Departments"
+          className="w-full md:w-2/5 flex flex-col gap-5"
+        >
+          <List
+            columns={[]}
+            data={departmentsArray}
+            type="withViewButton"
+            onClick={() => navigate("/departments")}
+          ></List>
         </Card>
-        <Card head="Leave balance" className="w-full md:w-2/5">
-          Leave Balance
+        <Card
+          head="Leave Balance"
+          className="w-full md:w-2/5 flex flex-col gap-5"
+        >
+          <List
+            columns={["Leave Type", "Days"]}
+            data={leaveBalanceArray}
+            type="withoutViewButton"
+            onClick={() => {}}
+          />
         </Card>
       </div>
     </Page>

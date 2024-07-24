@@ -31,7 +31,7 @@ const ListItem = <T extends Record<string, any>>({
         </td>
       ))}
       {type === "withViewButton" && (
-        <td className="whitespace-nowrap px-4 py-2 flex">
+        <td className="whitespace-nowrap px-4 py-2">
           <Button onClick={onClick} variant="outline" className="px-2 mx-2">
             View
           </Button>
