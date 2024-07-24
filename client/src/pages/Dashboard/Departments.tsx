@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export const DepartmentsPage = () => {
   const columns = [
+    "ID",
     "Name",
     "Head of Department",
     "Description",
@@ -15,18 +16,21 @@ export const DepartmentsPage = () => {
 
   const departments = [
     {
+      id: "1",
       name: "Web Development",
       head: "Omar Kassar",
       description: "description.",
       number_of_employees: 5,
     },
     {
+      id: "2",
       name: "3D Art",
       head: "Omar Kassar",
       description: "description.",
       number_of_employees: 5,
     },
     {
+      id: "3",
       name: "UI/UX Design",
       head: "Omar Kassar",
       description: "description.",
@@ -70,7 +74,7 @@ export const DepartmentsPage = () => {
           columns={columns}
           data={filteredDepartments}
           type="withViewButton"
-          onClick={() => navigate("/departments/department-id")}
+          onClick={(item) => navigate(`/departments/${item.id}`)}
         ></List>
       </Card>
     </Page>

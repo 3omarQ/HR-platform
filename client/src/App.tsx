@@ -10,6 +10,7 @@ import { DashboardLayout } from "./pages/Dashboard/DashboardLayout";
 import { EmployeePage } from "./pages/Dashboard/Employees";
 import GeneralPage from "./pages/Dashboard/General";
 import Departments from "./pages/Dashboard/Departments";
+import IndividualDepartment from "./pages/Dashboard/IndividualDepartment";
 import Submissions from "./pages/Dashboard/Submissions";
 import JobOffers from "./pages/Dashboard/JobOffers";
 import TimeOffs from "./pages/Dashboard/TimeOffs";
@@ -31,6 +32,7 @@ const PrivateLayout = () => {
 
         <Route path="/employees" element={<EmployeePage />} />
         <Route path="/departments" element={<Departments />} />
+        <Route path="/departments/:id" element={<IndividualDepartment />} />
         <Route path="/leave-requests" element={<TimeOffs />} />
 
         <Route path="/jobs" element={<JobOffers />} />
