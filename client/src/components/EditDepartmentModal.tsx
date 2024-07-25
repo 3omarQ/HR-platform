@@ -10,14 +10,14 @@ interface Department {
 
 interface Prop {
   department: Department;
-  onClose: () => void; // Add onClose prop
+  onClose: () => void;
 }
 
 export const EditDepartmentModal: React.FC<Prop> = ({
   department,
   onClose,
 }) => {
-  const [isOpen, setIsOpen] = useState(true); // Default to true since the modal is being opened
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleClose = () => {
     setIsOpen(false);

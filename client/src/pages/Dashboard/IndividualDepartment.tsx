@@ -5,11 +5,11 @@ import { Page } from "../Page";
 import List from "../../components/List";
 import { Button } from "../../components";
 import { EditEmployeeModal } from "../../components/EditEmployeeModal";
-import { EditDepartmentModal } from "../../components/EditDepartmentModal"; // Import the modal
+import { EditDepartmentModal } from "../../components/EditDepartmentModal";
 
 const IndividualDepartment = () => {
   const { departmentId } = useParams();
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false); // State for modal visibility
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const department = {
     id: departmentId,
@@ -95,9 +95,15 @@ const IndividualDepartment = () => {
           />
         </Card>
 
-        <Button variant="gradient" className="w-24" onClick={toggleEditModal}>
-          Edit
-        </Button>
+        <div className="w-full flex justify-end mx-5">
+          <Button
+            variant="gradient"
+            className="w-24 align"
+            onClick={toggleEditModal}
+          >
+            Edit
+          </Button>
+        </div>
       </div>
 
       {isEditModalOpen && (
