@@ -4,9 +4,10 @@ import { Card } from "../../components/Card";
 import List from "../../components/List";
 
 import { Page } from "../Page";
+import { useNavigate } from "react-router-dom";
 
 export const EmployeePage = () => {
-  const columns = ["Name", "Email", "Department"];
+  const columns = ["Id", "Name", "Department", "Email"];
 
   const employees = [
     {
@@ -30,6 +31,7 @@ export const EmployeePage = () => {
   ];
 
   const [filteredEmployees, setFilteredEmployees] = useState(employees);
+  const navigate = useNavigate();
 
   const handleInputChange = (
     searchItemEmployee: string,
@@ -69,7 +71,12 @@ export const EmployeePage = () => {
             }}
           ></FormField>
         </div>
-        <List columns={columns} data={filteredEmployees}></List>
+        <List
+          columns={columns}
+          data={filteredEmployees}
+          type="withViewButton"
+          onClick={() => navigate("/profile")}
+        ></List>
       </Card>
     </Page>
   );

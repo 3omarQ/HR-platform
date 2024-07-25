@@ -27,7 +27,7 @@ const signIn = async (email: string, password: string): Promise<string> => {
 const forgetAccount = async (email: string): Promise<void> => {
   const user = await User.findOne({ email });
   if (!user) {
-    throw new Error("User with email provided doesn not exist");
+    throw new Error("User with email provided does not exist");
   };
   const token = jwt.generate({
     user_id : user.id,

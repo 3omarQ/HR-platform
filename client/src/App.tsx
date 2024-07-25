@@ -1,10 +1,16 @@
 import { SignInPage, ResetPasswordPage, CheckEmailPage } from "./pages/Auth";
 
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import { DashboardLayout } from "./pages/Dashboard/DashboardLayout";
 import { EmployeePage } from "./pages/Dashboard/Employees";
 import GeneralPage from "./pages/Dashboard/General";
 import Departments from "./pages/Dashboard/Departments";
+import IndividualDepartment from "./pages/Dashboard/IndividualDepartment";
 import Submissions from "./pages/Dashboard/Submissions";
 import JobOffers from "./pages/Dashboard/JobOffers";
 import TimeOffs from "./pages/Dashboard/TimeOffs";
@@ -13,14 +19,9 @@ import ChangePasswordPage from "./pages/Auth/ChangePasswordPage";
 import { RecoveryProvider } from "./contexts/RecoveryContext";
 import { useSession } from "./contexts/SessionContext";
 
-
 function App() {
-  const { token } = useSession()
-  return (
-    <Router>
-      {token ? <PrivateLayout /> : <PublicLayout />}
-    </Router>
-  );
+  const { token } = useSession();
+  return <Router>{token ? <PrivateLayout /> : <PublicLayout />}</Router>;
 }
 
 const PrivateLayout = () => {
@@ -31,6 +32,7 @@ const PrivateLayout = () => {
 
         <Route path="/employees" element={<EmployeePage />} />
         <Route path="/departments" element={<Departments />} />
+        <Route path="/departments/:id" element={<IndividualDepartment />} />
         <Route path="/leave-requests" element={<TimeOffs />} />
 
         <Route path="/jobs" element={<JobOffers />} />
