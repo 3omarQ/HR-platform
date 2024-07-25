@@ -1,5 +1,5 @@
 import { mailToNewEmployee } from "../mailing/mail-messages";
-import EmpDocument from "../models/EmpDocument";
+import EmpDocument, { IEmpDocument } from "../models/EmpDocument";
 import EmpInformation from "../models/EmpInformation";
 import User, { IUser } from "../models/User";
 import { encrypt, generatePassword } from "../utils/enc";
@@ -51,27 +51,29 @@ const getEmployee = async (id: string): Promise<IUser> => {
   return employee;
 }
 
-const deleteEmployee = async (id: string): Promise<string> => {
-  const employee = await User.findById(id)
-  if (!employee) {
-    throw new Error("there are no employee with this id ");
+const getAllEmployees= async ():Promise<IUser[]>=>{
+  const employees = await User.find({is_admin:false}).select(["-hashed_password","-is_admin"])
+  if (!employees){
+    throw new Error('there is no employee right now')
   }
-  const empInfo = await EmpInformation.findOne({ employeeId: id })
-  // await EmpDocument.findByIdAndDelete(empInfo?.document.toString())
-  await empInfo?.deleteOne()
-  await employee.deleteOne()
-
-  return "Employee deleted successfully"
+  return employees
 
 }
 
-const updateInformation = async (empId: string, info: EmpInfo): Promise<string> => {
-  const oldEmpInfo = await EmpInformation.findOne({ employeeId: empId })
-  if (!oldEmpInfo) {
-    throw new Error("employee not exist")
+const getEmployeeDocuments = async (empId: string): Promise<IEmpDocument[]> => {
+  const empDocuments = await EmpDocument.find({ employeeId: empId })
+  if (!empDocuments) {
+    throw new Error("employee haven't any document yet")
   }
-  await oldEmpInfo.updateOne(info)
-  return "Data updated successfully"
+  return empDocuments
+}
+
+const getEmployeeInformations = async (empId: string): Promise<EmpInfo> => {
+  const empInfo = await EmpInformation.findOne({ employeeId: empId })
+  if (!empInfo) {
+    throw new Error('employee informations not found ')
+  }
+  return empInfo
 }
 
 const addDocument = async (empId: string, document: EmpDoc): Promise<string> => {
@@ -89,6 +91,15 @@ const addDocument = async (empId: string, document: EmpDoc): Promise<string> => 
   return "Document added successfully"
 }
 
+const updateInformation = async (empId: string, info: EmpInfo): Promise<string> => {
+  const oldEmpInfo = await EmpInformation.findOne({ employeeId: empId })
+  if (!oldEmpInfo) {
+    throw new Error("employee not exist")
+  }
+  await oldEmpInfo.updateOne(info)
+  return "Data updated successfully"
+}
+
 const updateDocument = async (empId: string, document: EmpDoc): Promise<string> => {
   const findDocument = await EmpDocument.findOne({ employeeId: empId, documentType: document.documentType })
   if (!findDocument) {
@@ -99,24 +110,20 @@ const updateDocument = async (empId: string, document: EmpDoc): Promise<string> 
 
 }
 
-const getEmployeeDocuments = async (empId: string): Promise<any> => {
-  const empDocuments = await EmpDocument.findOne({ employeeId: empId })
-  if (!empDocuments) {
-    return []
-  }
-  return empDocuments
+const deleteEmployee = async (id: string): Promise<string> => {
+  await User.findByIdAndDelete(id)
+  await EmpInformation.findOneAndDelete({ employeeId: id })
+  await EmpDocument.deleteMany({employeeId:id})
+  
+  return "Employee deleted successfully"
+
 }
 
-const getEmployeeInformations = async (empId: string): Promise<EmpInfo> => {
-  const empInfo = await EmpInformation.findOne({ employeeId: empId })
-  if (!empInfo) {
-    throw new Error('employee informations not found ')
-  }
-  return empInfo
-}
+
 
 export default {
   createEmployee,
+  getAllEmployees,
   deleteEmployee,
   updateInformation,
   getEmployeeDocuments,
