@@ -31,6 +31,7 @@ const PrivateLayout = () => {
 
         <Route path="/employees" element={<EmployeePage />} />
         <Route path="/departments" element={<Departments />} />
+        <Route path="/departments/:id" element={<IndividualDepartment />}
         <Route path="/leave-requests" element={<TimeOffs />} />
 
         <Route path="/jobs" element={<JobOffers />} />
