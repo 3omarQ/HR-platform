@@ -4,8 +4,7 @@ import { Card } from "../../components/Card";
 import { Page } from "../Page";
 import List from "../../components/List";
 import { Button } from "../../components";
-import { EditEmployeeModal } from "../../components/EditEmployeeModal";
-import { EditDepartmentModal } from "../../components/EditDepartmentModal";
+import { EditDepartmentModal } from "../../modals/EditDepartmentModal";
 
 const IndividualDepartment = () => {
   const { departmentId } = useParams();
@@ -70,7 +69,8 @@ const IndividualDepartment = () => {
             columns={[]}
             data={generalInfoArray}
             onClick={() => {}}
-            type="withoutViewButton"
+            buttonName=""
+            type="withoutButton"
           />
         </Card>
 
@@ -81,7 +81,8 @@ const IndividualDepartment = () => {
           <List
             columns={["Name", "Role", "Contact"]}
             data={department.members}
-            type="withViewButton"
+            type="withButton"
+            buttonName="View"
             onClick={() => {}}
           />
         </Card>
@@ -90,7 +91,8 @@ const IndividualDepartment = () => {
           <List
             columns={["Title", "Description"]}
             data={department.projects}
-            type="withViewButton"
+            type="withButton"
+            buttonName="View"
             onClick={() => {}}
           />
         </Card>

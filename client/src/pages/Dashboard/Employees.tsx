@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { FormField } from "../../components";
+import { Button, FormField } from "../../components";
 import { Card } from "../../components/Card";
 import List from "../../components/List";
 
 import { Page } from "../Page";
 import { useNavigate } from "react-router-dom";
+import AddEmployeeModal from "../../modals/AddEmployeeModal";
 
 export const EmployeePage = () => {
   const columns = ["Id", "Name", "Department", "Email"];
@@ -31,6 +32,7 @@ export const EmployeePage = () => {
   ];
 
   const [filteredEmployees, setFilteredEmployees] = useState(employees);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (
@@ -52,9 +54,16 @@ export const EmployeePage = () => {
 
   return (
     <Page title="Manage employees">
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center w-full">
         <Card head="Total employees" body={employees.length.toString()}></Card>
         <Card head="Onboarding" body={employees.length.toString()}></Card>
+        <Button
+          onClick={() => setIsAddModalOpen(true)}
+          variant="gradient"
+          className="w-40 ml-auto mx-9 "
+        >
+          Add New
+        </Button>
       </div>
       <Card className="flex flex-col justify-between gap-7">
         <div className="flex flex-row justify-start gap-5">
@@ -74,10 +83,14 @@ export const EmployeePage = () => {
         <List
           columns={columns}
           data={filteredEmployees}
-          type="withViewButton"
+          type="withButton"
+          buttonName="View"
           onClick={() => navigate("/profile")}
         ></List>
       </Card>
+      {isAddModalOpen && (
+        <AddEmployeeModal onClose={() => setIsAddModalOpen(false)} />
+      )}
     </Page>
   );
 };
