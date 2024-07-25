@@ -2,28 +2,19 @@ import mongoose, { model, Model, Schema } from "mongoose";
 
 
 export interface IEmpDocument extends Document {
-    empInformationId: mongoose.Types.ObjectId,
-    coverLetter?: string,
-    resume?: string,
-    diplome?: string,
-    certifications?: string[],
+    employeeId: mongoose.Types.ObjectId,
+    documentType?: string,
+    url?: string,
     created_at: Date,
     updated_at: Date,
 }
 
-// {
-// employeeId : string ,
-// documentType : string ,
-// fileUrl : string 
-// }
 
 
 const empDocumentSchema :Schema<IEmpDocument> = new Schema ({
-    empInformationId: { type: mongoose.Schema.Types.ObjectId, ref: 'EmpInformation' },
-    coverLetter: {type : String },
-    resume: {type : String },
-    diplome: {type : String },
-    certifications: {type : Array },
+    employeeId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    documentType: {type : String ,required:true },
+    url: {type : String ,required:true },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
 }) 

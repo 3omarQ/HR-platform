@@ -5,7 +5,6 @@ export interface IEmpInformation extends Document {
     contact: string,
     jobTitle: string,
     department: string,
-    document: mongoose.Types.ObjectId,
     created_at: Date,
     updated_at: Date,
 }
@@ -16,7 +15,6 @@ const EmpInformationSchema: Schema<IEmpInformation> = new Schema(
         contact: { type: String,  },
         jobTitle: { type: String,  },
         department: { type: String,  },
-        document: { type: mongoose.Schema.Types.ObjectId, ref: 'EmpDocument' },
         created_at: { type: Date, default: Date.now },
         updated_at: { type: Date, default: Date.now },
     },
