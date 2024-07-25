@@ -59,7 +59,7 @@ export const Profile: React.FC = () => {
   const navigate = useNavigate();
   return (
     <Page title="Profile">
-      <div className="flex flex-wrap gap-10">
+      <div className="flex flex-wrap gap-8">
         <Card
           head="Contact Info"
           className=" flex flex-col w-full md:w-2/5 gap-5"
