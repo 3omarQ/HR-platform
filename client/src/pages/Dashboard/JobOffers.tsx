@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { Card, FormField } from "../../components";
+import { Button, Card, FormField } from "../../components";
 import List from "../../components/List";
 import { Page } from "../Page";
 import { useState } from "react";
 import { EditJobOfferModal } from "../../components/EditJobOfferModal";
+import { AddNewJobModal } from "../../components/AddNewJobModal";
 
 export const JobOffers = () => {
   const columns = ["ID", "Position", "Department", "Location", "Description"];
@@ -36,7 +37,7 @@ export const JobOffers = () => {
   const [filteredJobOffers, setFilteredJobOffers] = useState(jobOffers);
   const [selectedJobOffer, setSelectedJobOffer] = useState(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const navigate = useNavigate();
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const handleInputChange = (searchItem: string) => {
     setFilteredJobOffers(
@@ -51,18 +52,21 @@ export const JobOffers = () => {
     setIsEditModalOpen(true);
   };
 
-  const toggleEditModal = () => {
-    setIsEditModalOpen(!isEditModalOpen);
-  };
-
   return (
     <Page title="Manage Job Offers">
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center w-full">
         <Card head="Total Job Offers" body={jobOffers.length.toString()}></Card>
         <Card
           head="Active Job Offers"
           body={jobOffers.length.toString()}
         ></Card>
+        <Button
+          onClick={() => setIsAddModalOpen(true)}
+          variant="gradient"
+          className="w-40 "
+        >
+          Add New
+        </Button>
       </div>
       <Card className="flex flex-col justify-between gap-7">
         <div className="flex flex-row justify-start gap-5">
@@ -83,8 +87,11 @@ export const JobOffers = () => {
       {isEditModalOpen && selectedJobOffer && (
         <EditJobOfferModal
           jobOffer={selectedJobOffer}
-          onClose={toggleEditModal}
+          onClose={() => setIsEditModalOpen(false)}
         />
+      )}
+      {isAddModalOpen && (
+        <AddNewJobModal onClose={() => setIsAddModalOpen(false)} />
       )}
     </Page>
   );
