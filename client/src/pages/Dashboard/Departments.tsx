@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { FormField } from "../../components";
+import { Button, FormField } from "../../components";
 import { Card } from "../../components/Card";
 import List from "../../components/List";
 import { Page } from "../Page";
 import { useNavigate } from "react-router-dom";
+import AddDepartmentModal from "../../modals/AddDepartmentModal";
 
 export const DepartmentsPage = () => {
   const columns = [
@@ -39,6 +40,7 @@ export const DepartmentsPage = () => {
   ];
 
   const [filteredDepartments, setFilteredDepartments] = useState(departments);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (searchItem: string) => {
@@ -51,7 +53,7 @@ export const DepartmentsPage = () => {
 
   return (
     <Page title="Manage Departments">
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center">
         <Card
           head="Total departments"
           body={departments.length.toString()}
@@ -60,6 +62,13 @@ export const DepartmentsPage = () => {
           head="Active Departments"
           body={departments.length.toString()}
         ></Card>
+        <Button
+          onClick={() => setIsAddModalOpen(true)}
+          variant="gradient"
+          className="w-40 ml-auto mx-9 "
+        >
+          Add New
+        </Button>
       </div>
       <Card className="flex flex-col justify-between gap-7">
         <div className="flex flex-row justify-start gap-5">
@@ -78,6 +87,9 @@ export const DepartmentsPage = () => {
           onClick={(item) => navigate(`/departments/${item.id}`)}
         ></List>
       </Card>
+      {isAddModalOpen && (
+        <AddDepartmentModal onClose={() => setIsAddModalOpen(false)} />
+      )}
     </Page>
   );
 };
