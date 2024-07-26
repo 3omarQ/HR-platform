@@ -74,7 +74,8 @@ export const EmployeePage = () => {
         <List
           columns={columns}
           data={filteredEmployees}
-          type="withViewButton"
+          type="withButton"
+          buttonName="View"
           onClick={() => navigate("/profile")}
         ></List>
       </Card>

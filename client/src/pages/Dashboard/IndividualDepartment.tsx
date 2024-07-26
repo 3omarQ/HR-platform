@@ -70,7 +70,8 @@ const IndividualDepartment = () => {
             columns={[]}
             data={generalInfoArray}
             onClick={() => {}}
-            type="withoutViewButton"
+            buttonName=""
+            type="withoutButton"
           />
         </Card>
 
@@ -81,7 +82,8 @@ const IndividualDepartment = () => {
           <List
             columns={["Name", "Role", "Contact"]}
             data={department.members}
-            type="withViewButton"
+            type="withButton"
+            buttonName="View"
             onClick={() => {}}
           />
         </Card>
@@ -90,7 +92,8 @@ const IndividualDepartment = () => {
           <List
             columns={["Title", "Description"]}
             data={department.projects}
-            type="withViewButton"
+            type="withButton"
+            buttonName="View"
             onClick={() => {}}
           />
         </Card>

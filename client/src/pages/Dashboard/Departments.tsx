@@ -73,7 +73,8 @@ export const DepartmentsPage = () => {
         <List
           columns={columns}
           data={filteredDepartments}
-          type="withViewButton"
+          type="withButton"
+          buttonName="View"
           onClick={(item) => navigate(`/departments/${item.id}`)}
         ></List>
       </Card>
