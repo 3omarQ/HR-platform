@@ -35,6 +35,36 @@ export const FormField: FC<Prop> = ({
       </label>
     );
   }
+  if (props.type === "textarea") {
+    return (
+      <div className="flex flex-col gap-2 w-full">
+        <label
+          htmlFor={props.id ?? label}
+          className="text-sm font-normal cursor-pointer"
+        >
+          {label}
+        </label>
+
+        <div className="flex relative">
+          <textarea
+            id={props.id ?? label}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              onValueChange?.(e.target.value)
+            }
+            cols={33}
+            rows={7}
+            className="h-56 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+            placeholder={props.placeholder}
+          />
+          {icon && (
+            <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
+              {icon}
+            </span>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-2">
