@@ -63,7 +63,7 @@ export const JobOffers = () => {
         <Button
           onClick={() => setIsAddModalOpen(true)}
           variant="gradient"
-          className="w-40 "
+          className="w-40 ml-auto mx-10"
         >
           Add New
         </Button>
