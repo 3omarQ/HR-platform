@@ -47,7 +47,7 @@ export const JobOffers = () => {
     );
   };
 
-  const handleViewButtonClick = (jobOffer: any) => {
+  const handleEditButtonClick = (jobOffer: any) => {
     setSelectedJobOffer(jobOffer);
     setIsEditModalOpen(true);
   };
@@ -80,8 +80,9 @@ export const JobOffers = () => {
         <List
           columns={columns}
           data={filteredJobOffers}
-          type="withViewButton"
-          onClick={handleViewButtonClick}
+          type="withButton"
+          buttonName="Edit"
+          onClick={handleEditButtonClick}
         ></List>
       </Card>
       {isEditModalOpen && selectedJobOffer && (
