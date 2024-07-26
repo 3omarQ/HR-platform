@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button } from "./Button";
-import { FormField } from "./FormField";
+import { Button } from "../components/Button";
+import { FormField } from "../components/FormField";
 interface Employee {
   id: number;
   name: string;
@@ -68,17 +68,17 @@ export const EditEmployeeModal: React.FC<Prop> = ({ employee }) => {
                 <FormField
                   label="Name"
                   placeholder={employee.name}
-                  onValueChange={() => { }}
+                  onValueChange={() => {}}
                 ></FormField>
                 <FormField
                   label="Email"
                   placeholder={employee.email}
-                  onValueChange={() => { }}
+                  onValueChange={() => {}}
                 ></FormField>
                 <FormField
                   label="Department"
                   placeholder={employee.department}
-                  onValueChange={() => { }}
+                  onValueChange={() => {}}
                 ></FormField>
               </div>
               <Button

@@ -1,35 +1,29 @@
 import React, { useState } from "react";
-import { Button } from "./Button";
-import { FormField } from "./FormField";
+import { Button } from "../components/Button";
+import { FormField } from "../components/FormField";
+
+interface JobOffer {
+  id: string | undefined;
+  position: string;
+  department: string;
+  location: string;
+  description: string;
+}
 
 interface Prop {
+  jobOffer: JobOffer;
   onClose: () => void;
 }
 
-export const AddNewJobModal: React.FC<Prop> = ({ onClose }) => {
+export const EditJobOfferModal: React.FC<Prop> = ({ jobOffer, onClose }) => {
   const [isOpen, setIsOpen] = useState(true);
-  const [position, setPosition] = useState("");
-  const [department, setDepartment] = useState("");
-  const [location, setLocation] = useState("");
-  const [description, setDescription] = useState("");
 
   const handleClose = () => {
     setIsOpen(false);
     onClose();
   };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const newJobOffer = {
-      id: undefined, // generated in the backend?
-      position,
-      department,
-      location,
-      description,
-    };
-
-    /*backend stuff*/
-    handleClose();
+  const handleSubmit = () => {
+    //waiting for backend api
   };
 
   return (
@@ -43,7 +37,7 @@ export const AddNewJobModal: React.FC<Prop> = ({ onClose }) => {
           <div className="relative p-4 w-full max-w-md max-h-full bg-slate-100 rounded-md shadow ">
             <div className="flex items-center justify-between p-4 border-b rounded-t">
               <h3 className="text-lg font-semibold text-gray-900 ">
-                Add New Job Offer
+                Edit Job Offer
               </h3>
               <button
                 type="button"
@@ -72,27 +66,23 @@ export const AddNewJobModal: React.FC<Prop> = ({ onClose }) => {
               <div className="flex flex-row flex-wrap gap-4 mb-4 grid-cols-2">
                 <FormField
                   label="Position"
-                  placeholder="Enter position"
-                  value={position}
-                  onValueChange={setPosition}
+                  placeholder={jobOffer.position}
+                  onValueChange={() => {}}
                 ></FormField>
                 <FormField
                   label="Department"
-                  placeholder="Enter department"
-                  value={department}
-                  onValueChange={setDepartment}
+                  placeholder={jobOffer.department}
+                  onValueChange={() => {}}
                 ></FormField>
                 <FormField
                   label="Location"
-                  placeholder="Enter location"
-                  value={location}
-                  onValueChange={setLocation}
+                  placeholder={jobOffer.location}
+                  onValueChange={() => {}}
                 ></FormField>
                 <FormField
                   label="Description"
-                  placeholder="Enter description"
-                  value={description}
-                  onValueChange={setDescription}
+                  placeholder={jobOffer.description}
+                  onValueChange={() => {}}
                   type="textarea"
                 ></FormField>
               </div>
@@ -101,7 +91,12 @@ export const AddNewJobModal: React.FC<Prop> = ({ onClose }) => {
                 type="submit"
                 className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center "
               >
-                Add Job Offer
+                <path
+                  fillRule="evenodd"
+                  d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                  clipRule="evenodd"
+                />
+                Edit Job Offer
               </Button>
             </form>
           </div>

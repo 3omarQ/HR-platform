@@ -4,8 +4,8 @@ import { Card } from "../../components/Card";
 import { Page } from "../Page";
 import List from "../../components/List";
 import { Button } from "../../components";
-import { EditEmployeeModal } from "../../components/EditEmployeeModal";
-import { EditDepartmentModal } from "../../components/EditDepartmentModal";
+import { EditEmployeeModal } from "../../modals/EditEmployeeModal";
+import { EditDepartmentModal } from "../../modals/EditDepartmentModal";
 
 const IndividualDepartment = () => {
   const { departmentId } = useParams();

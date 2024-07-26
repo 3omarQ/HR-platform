@@ -3,8 +3,8 @@ import { Button, Card, FormField } from "../../components";
 import List from "../../components/List";
 import { Page } from "../Page";
 import { useState } from "react";
-import { EditJobOfferModal } from "../../components/EditJobOfferModal";
-import { AddNewJobModal } from "../../components/AddNewJobModal";
+import { EditJobOfferModal } from "../../modals/EditJobOfferModal";
+import { AddNewJobModal } from "../../modals/AddNewJobModal";
 
 export const JobOffers = () => {
   const columns = ["ID", "Position", "Department", "Location", "Description"];

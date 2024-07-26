@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "./Button";
 import { useNavigate } from "react-router-dom";
-import { EditEmployeeModal } from "./EditEmployeeModal";
+import { EditEmployeeModal } from "../modals/EditEmployeeModal";
 
 type ListItemType = "withButton" | "withoutButton";
 
