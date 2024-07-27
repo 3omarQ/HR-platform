@@ -7,7 +7,7 @@ const BACKEND = {
   resetPassword: `${backendURL}/auth/reset-password`,
 
   // employees endpoints
-  employeesList: `${backendURL}/employees`,
+  employeesList: `${backendURL}/employee/`,
 };
 
 export default BACKEND;

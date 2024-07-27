@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, FormField } from "../../components";
 import { Card } from "../../components/Card";
 import List from "../../components/List";
@@ -6,51 +6,30 @@ import List from "../../components/List";
 import { Page } from "../Page";
 import { useNavigate } from "react-router-dom";
 import AddEmployeeModal from "../../modals/AddEmployeeModal";
+import { getEmployeeList } from "../../services/employee";
 
 export const EmployeePage = () => {
   const columns = ["Id", "Name", "Department", "Email"];
 
-  const employees = [
-    {
-      id: 1,
-      name: "Omar Kassar",
-      department: "Web Development",
-      email: "omarkassar202@gmail.com",
-    },
-    {
-      id: 2,
-      name: "Dhia Mlayah",
-      department: "Web Development",
-      email: "omarkassar202@gmail.com",
-    },
-    {
-      id: 3,
-      name: "Jhon Doe",
-      department: "3D Art",
-      email: "omarkassar202@gmail.com",
-    },
-  ];
-
-  const [filteredEmployees, setFilteredEmployees] = useState(employees);
+  const [employees, setEmployees] = useState([]);
+  const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      const employeeList = await getEmployeeList();
+      setEmployees(employeeList);
+      setFilteredEmployees(employeeList);
+    };
+
+    fetchEmployees();
+  }, []);
 
   const handleInputChange = (
     searchItemEmployee: string,
     searchItemDepartment: string
-  ) => {
-    setFilteredEmployees(
-      employees.filter(
-        (employee) =>
-          employee.name
-            .toLowerCase()
-            .includes(searchItemEmployee.toLowerCase()) &&
-          employee.department
-            .toLowerCase()
-            .includes(searchItemDepartment.toLowerCase())
-      )
-    );
-  };
+  ) => {};
 
   return (
     <Page title="Manage employees">
