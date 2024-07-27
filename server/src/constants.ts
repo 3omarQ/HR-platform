@@ -9,6 +9,9 @@ export const DB_URL = process.env.MONGODB_URL ?? "";
 export const DB_USER = process.env.MONGODB_USER ?? "";
 export const DB_PASS = process.env.MONGODB_PASS ?? "";
 
+export const REDIRECR_URL_FOR_FORGET_PASSWORD = process.env.REDIRECR_URL_FOR_FORGET_PASSWORD ?? "http://localhost:3000/"
+
+
 const SUPER_ADMIN_FIRSTNAME = process.env.SUPER_ADMIN_FIRSTNAME ?? "OK STUDIOS";
 const SUPER_ADMIN_LASTNAME = process.env.SUPER_ADMIN_LASTNAME ?? "HR";
 const SUPER_ADMIN_EMAIL = process.env.SUPER_ADMIN_EMAIL ?? "hr@okstudios.io";
@@ -30,6 +33,7 @@ const SMTP_NAME = process.env.SMTP_NAME ?? "OK Studios";
 const SMTP_FROM = process.env.SMTP_FROM ?? "hr@okstudios.io";
 const SMTP_AUTH_USER = process.env.SMTP_AUTH_USER ?? "test@okstudios.io";
 const SMTP_AUTH_PASS = process.env.SMTP_AUTH_PASS ?? "A]w[dphuawond082@";
+
 
 export const SMTP = {
   host: SMTP_HOST,

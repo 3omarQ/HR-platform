@@ -10,14 +10,14 @@ const signIn = asyncMiddelware(async (req: Request, res: Response) => {
     res.status(201).json({ access_token });
 });
 
-const forgetAccount = asyncMiddelware(async (req: Request, res: Response) => {
-    await auth_svc.forgetAccount(req.body.email);
+const forgetPassword = asyncMiddelware(async (req: Request, res: Response) => {
+    await auth_svc.forgetPassword(req.body.email);
     res.status(201).json({ message: "Request successfully executed" });
 });
 
 const resetPassword = asyncMiddelware(async (req: Request, res: Response) => {
-    await auth_svc.resetPassword(req.body.email, req.body.password);
+    await auth_svc.resetPassword(res.locals.user.id, req.body.password);
     res.status(201).json({ message: "Password successfully changed" });
 });
 
-export default { signIn, forgetAccount, resetPassword };
+export default { signIn, forgetPassword, resetPassword };

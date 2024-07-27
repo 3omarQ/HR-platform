@@ -1,4 +1,4 @@
-import { mailToForgetAccount, mailToResetPassword } from "../mailing/mail-messages";
+import { mailToForgetPassword, mailToResetPassword } from "../mailing/mail-messages";
 import User from "../models/User";
 import { compare, encrypt } from "../utils/enc";
 import jwt from "../utils/jwt";
@@ -20,37 +20,43 @@ const signIn = async (email: string, password: string): Promise<string> => {
   const token = jwt.generate({
     user_id: user.id,
     role: user.is_admin ? "ADMIN" : "EMPLOYEE",
+    tokenType:"auth"
   });
   return token;
 };
 
-const forgetAccount = async (email: string): Promise<void> => {
+const forgetPassword = async (email: string): Promise<void> => {
   const user = await User.findOne({ email });
   if (!user) {
     throw new Error("User with email provided does not exist");
   };
-  const token = jwt.generate({
+
+
+  // generate a token who expired after 10 minuts 
+  const tokenPs = jwt.generate({
     user_id : user.id,
-  }) 
-  await mailToForgetAccount(email,token)
+    tokenType:"forget-password"
+  },'10m') 
+  await mailToForgetPassword(email,tokenPs)
   
 };
 
 const resetPassword = async (
-  email: string,
+  id: string,
   password: string
 ): Promise<void> => {
-  const user = await User.findOne({ email });
+
+  const user = await User.findById(id);
   if (!user) {
     throw new Error("User does not exist");
   }
   user.hashed_password = encrypt(password);
   await user.save();
-  await mailToResetPassword(email)
+  await mailToResetPassword(user.email)
 }
 
 export default {
   signIn,
-  forgetAccount,
+  forgetPassword,
   resetPassword,
 };
