@@ -19,7 +19,7 @@ export const EmployeePage = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       const employeeList = await getEmployeeList();
-      setEmployees(employeeList);
+      setEmployees(employeeList.employees);
       setFilteredEmployees(employeeList);
     };
 
@@ -30,6 +30,10 @@ export const EmployeePage = () => {
     searchItemEmployee: string,
     searchItemDepartment: string
   ) => {};
+
+  // NB : data recived successfully but like this : { employees : [] }
+  // the rest of problem i think from the component 
+
 
   return (
     <Page title="Manage employees">
