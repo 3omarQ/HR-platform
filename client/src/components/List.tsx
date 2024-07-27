@@ -5,7 +5,8 @@ import { Card } from "./Card";
 interface Prop<T> {
   columns: string[];
   data: T[];
-  type: "withViewButton" | "withoutViewButton";
+  type: "withButton" | "withoutButton";
+  buttonName: string;
   onClick: (item: T) => void;
 }
 
@@ -13,6 +14,7 @@ const List = <T extends Record<string, any>>({
   columns,
   data,
   type,
+  buttonName,
   onClick,
 }: Prop<T>) => {
   return (
@@ -29,7 +31,7 @@ const List = <T extends Record<string, any>>({
                   {column}
                 </th>
               ))}
-              {type === "withViewButton" && <th className="px-4 py-2"></th>}
+              {type === "withButton" && <th className="px-4 py-2"></th>}
             </tr>
           </thead>
         )}
@@ -39,6 +41,7 @@ const List = <T extends Record<string, any>>({
               key={index}
               item={item}
               type={type}
+              buttonName={buttonName}
               onClick={() => onClick(item)}
             />
           ))}

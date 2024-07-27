@@ -89,7 +89,8 @@ export const TimeOffs = () => {
         <List
           columns={columns}
           data={filteredLeaveRequests}
-          type="withViewButton"
+          type="withButton"
+          buttonName="View"
           onClick={(item) => navigate(`/leave-request-details/${item.id}`)}
         ></List>
       </Card>

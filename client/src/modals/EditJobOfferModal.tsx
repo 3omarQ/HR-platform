@@ -1,27 +1,29 @@
 import React, { useState } from "react";
-import { Button } from "./Button";
-import { FormField } from "./FormField";
-interface Department {
+import { Button } from "../components/Button";
+import { FormField } from "../components/FormField";
+
+interface JobOffer {
   id: string | undefined;
-  name: string;
-  head: string;
+  position: string;
+  department: string;
+  location: string;
   description: string;
 }
 
 interface Prop {
-  department: Department;
+  jobOffer: JobOffer;
   onClose: () => void;
 }
 
-export const EditDepartmentModal: React.FC<Prop> = ({
-  department,
-  onClose,
-}) => {
+export const EditJobOfferModal: React.FC<Prop> = ({ jobOffer, onClose }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const handleClose = () => {
     setIsOpen(false);
     onClose();
+  };
+  const handleSubmit = () => {
+    //waiting for backend api
   };
 
   return (
@@ -35,7 +37,7 @@ export const EditDepartmentModal: React.FC<Prop> = ({
           <div className="relative p-4 w-full max-w-md max-h-full bg-slate-100 rounded-md shadow ">
             <div className="flex items-center justify-between p-4 border-b rounded-t">
               <h3 className="text-lg font-semibold text-gray-900 ">
-                Edit Department
+                Edit Job Offer
               </h3>
               <button
                 type="button"
@@ -60,22 +62,28 @@ export const EditDepartmentModal: React.FC<Prop> = ({
                 <span className="sr-only">Close modal</span>
               </button>
             </div>
-            <form className="p-4">
-              <div className="grid gap-4 mb-4 grid-cols-2">
+            <form className="p-4" onSubmit={handleSubmit}>
+              <div className="flex flex-row flex-wrap gap-4 mb-4 grid-cols-2">
                 <FormField
-                  label="Name"
-                  placeholder={department.name}
+                  label="Position"
+                  placeholder={jobOffer.position}
                   onValueChange={() => {}}
                 ></FormField>
                 <FormField
-                  label="Head"
-                  placeholder={department.head}
+                  label="Department"
+                  placeholder={jobOffer.department}
+                  onValueChange={() => {}}
+                ></FormField>
+                <FormField
+                  label="Location"
+                  placeholder={jobOffer.location}
                   onValueChange={() => {}}
                 ></FormField>
                 <FormField
                   label="Description"
-                  placeholder={department.description}
+                  placeholder={jobOffer.description}
                   onValueChange={() => {}}
+                  type="textarea"
                 ></FormField>
               </div>
               <Button
@@ -88,7 +96,7 @@ export const EditDepartmentModal: React.FC<Prop> = ({
                   d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                   clipRule="evenodd"
                 />
-                Edit Department
+                Edit Job Offer
               </Button>
             </form>
           </div>

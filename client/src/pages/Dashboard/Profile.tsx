@@ -67,7 +67,8 @@ export const Profile: React.FC = () => {
           <List
             columns={[]}
             data={contactInfoArray}
-            type="withoutViewButton"
+            buttonName=""
+            type="withoutButton"
             onClick={() => {}}
           ></List>
         </Card>
@@ -78,7 +79,8 @@ export const Profile: React.FC = () => {
           <List
             columns={["Post", "Duration"]}
             data={employeeExample.employmentHistory}
-            type="withoutViewButton"
+            type="withoutButton"
+            buttonName=""
             onClick={() => {}}
           ></List>
         </Card>
@@ -89,7 +91,8 @@ export const Profile: React.FC = () => {
           <List
             columns={[]}
             data={departmentsArray}
-            type="withViewButton"
+            type="withButton"
+            buttonName="View"
             onClick={() => navigate("/departments")}
           ></List>
         </Card>
@@ -100,7 +103,8 @@ export const Profile: React.FC = () => {
           <List
             columns={["Leave Type", "Days"]}
             data={leaveBalanceArray}
-            type="withoutViewButton"
+            type="withoutButton"
+            buttonName=""
             onClick={() => {}}
           />
         </Card>
