@@ -18,6 +18,7 @@ import Profile from "./pages/Dashboard/Profile";
 import ChangePasswordPage from "./pages/Auth/ChangePasswordPage";
 import { RecoveryProvider } from "./contexts/RecoveryContext";
 import { useSession } from "./contexts/SessionContext";
+import IndividualSubmission from "./pages/Dashboard/IndividualSubmission";
 
 function App() {
   const { token } = useSession();
@@ -33,6 +34,7 @@ const PrivateLayout = () => {
         <Route path="/employees" element={<EmployeePage />} />
         <Route path="/departments" element={<Departments />} />
         <Route path="/departments/:id" element={<IndividualDepartment />} />
+        <Route path="/submissions/:id" element={<IndividualSubmission />} />
         <Route path="/leave-requests" element={<TimeOffs />} />
 
         <Route path="/jobs" element={<JobOffers />} />

@@ -9,7 +9,7 @@ import AddEmployeeModal from "../../modals/AddEmployeeModal";
 import { getEmployeeList } from "../../services/employee";
 
 export const EmployeePage = () => {
-  const columns = ["Id", "Name", "Department", "Email"];
+  const columns = ["Name", "Email", "Department"]; // Adjusted columns
 
   const [employees, setEmployees] = useState([]);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
@@ -19,20 +19,32 @@ export const EmployeePage = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       const employeeList = await getEmployeeList();
-      //setEmployees(employeeList.employees);
-      //setFilteredEmployees(employeeList);
+      const mappedEmployees = employeeList.employees.map((employee: any) => ({
+        //employees mapped to fit the format
+        name: `${employee.firstname} ${employee.lastname}`,
+        email: employee.email,
+        department: "", // department needs to be added
+      }));
+      setEmployees(mappedEmployees);
+      setFilteredEmployees(mappedEmployees);
     };
 
     fetchEmployees();
-  }, []);
+  }, [isAddModalOpen]);
 
   const handleInputChange = (
     searchItemEmployee: string,
     searchItemDepartment: string
-  ) => {};
-
-  // NB : data recived successfully but like this : { employees : [] }
-  // the rest of problem i think from the component
+  ) => {
+    const filtered = employees.filter(
+      (employee: any) =>
+        (searchItemEmployee === "" ||
+          employee.name.toLowerCase().includes(searchItemEmployee)) &&
+        (searchItemDepartment === "" ||
+          employee.department.toLowerCase().includes(searchItemDepartment))
+    );
+    setFilteredEmployees(filtered);
+  };
 
   return (
     <Page title="Manage employees">

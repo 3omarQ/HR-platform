@@ -38,7 +38,7 @@ const Submissions = () => {
   const handleInputChange = (searchItem: string) => {
     setFilteredSubmissions(
       submissions.filter((submission) =>
-        submission.name.toLowerCase().includes(searchItem.toLowerCase())
+        submission.job.toLowerCase().includes(searchItem.toLowerCase())
       )
     );
   };
@@ -60,7 +60,7 @@ const Submissions = () => {
       <Card className="flex flex-col justify-between gap-7">
         <div className="flex flex-row justify-start gap-5">
           <FormField
-            label="Search Submission"
+            label="Search By Job"
             onValueChange={(searchItem) => {
               handleInputChange(searchItem);
             }}
