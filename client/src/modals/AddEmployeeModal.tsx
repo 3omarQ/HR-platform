@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "../components/Button";
 import { FormField } from "../components/FormField";
+import { addNewEmployee } from "../services/employee";
 
 interface Prop {
   onClose: () => void;
@@ -21,20 +22,19 @@ export const AddNewEmployeeModal: React.FC<Prop> = ({ onClose }) => {
     onClose();
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newEmployee = {
-      id: undefined, // generated in the backend?
-      name,
-      email,
-      phone,
-      department,
-      position,
-      location,
-      startDate,
-    };
 
-    /*backend stuff*/
+    const [firstname, lastname] = name.split(" ");
+
+    const response = await addNewEmployee(firstname, lastname, email, phone);
+
+    if (response.error) {
+      console.error("Failed to add new employee:", response.error);
+    } else {
+      console.log("New employee added successfully:", response);
+    }
+
     handleClose();
   };
 
