@@ -1,10 +1,21 @@
 import mongoose, { model, Model, Schema } from "mongoose";
+import { IEmpDocument } from "./EmpDocument";
 
 export interface IEmpInformation extends Document {
     employeeId: mongoose.Types.ObjectId,
-    contact: string,
-    jobTitle: string,
-    department: string,
+    cin: number,
+    adress: string,
+    position: string,  // intern or job
+
+    //Job
+    job: mongoose.Types.ObjectId,  // there where you found all job description
+    manager: mongoose.Types.ObjectId,  // manager of type user 
+    salary: number,
+
+    //department
+    department: mongoose.Types.ObjectId,
+
+
     created_at: Date,
     updated_at: Date,
 }
@@ -12,9 +23,14 @@ export interface IEmpInformation extends Document {
 const EmpInformationSchema: Schema<IEmpInformation> = new Schema(
     {
         employeeId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-        contact: { type: String,  },
-        jobTitle: { type: String,  },
-        department: { type: String,  },
+        cin: { type: Number, required: true },
+        adress: { type: String, required: true },
+
+        job: { type: mongoose.Schema.Types.ObjectId, ref: 'Job', required: true },
+        manager: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+        salary: { type: Number, required: true },
+        
+        department: { type: mongoose.Schema.Types.ObjectId, ref: 'Department', required: true },
         created_at: { type: Date, default: Date.now },
         updated_at: { type: Date, default: Date.now },
     },
